@@ -11,12 +11,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 // Game UI stat
-fun updateUserGuess(guessedWord: String){
-    userGuess = guessedWord
-}
-var userGuess by mutableStateOf("")
-    private set
+
 class GameViewModel : ViewModel() {
+    var userGuess by mutableStateOf("")
+    private set
+
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
@@ -54,6 +53,10 @@ class GameViewModel : ViewModel() {
             tempWord.shuffle()
         }
         return String(tempWord)
+    }
+
+    fun updateUserGuess(guessedWord: String){
+        userGuess = guessedWord
     }
 
 }
