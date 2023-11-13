@@ -78,6 +78,7 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()
         GameLayout(
             currentScrambledWord = gameUiState.currentScrambledWord,
             userGuess = gameViewModel.userGuess,
+            wordCount = gameUiState.currentWordCount,
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             onKeyboardDone = { gameViewModel.checkUserGuess()},
             isGuessWrong = gameUiState.isGuessedWordWrong,
@@ -105,7 +106,7 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()
             }
 
             OutlinedButton(
-                onClick = { },
+                onClick = { gameViewModel.skipWord()},
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -115,7 +116,7 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()
             }
         }
 
-        GameStatus(score = 0, modifier = Modifier.padding(20.dp))
+        GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))
     }
 }
 
@@ -138,6 +139,7 @@ fun GameLayout(currentScrambledWord: String,
                userGuess: String,
                onUserGuessChanged: (String) -> Unit,
                onKeyboardDone: () -> Unit,
+               wordCount: Int,
                modifier: Modifier = Modifier) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
 
@@ -156,7 +158,7 @@ fun GameLayout(currentScrambledWord: String,
                     .background(colorScheme.surfaceTint)
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
-                text = stringResource(R.string.word_count, 0),
+                text = stringResource(R.string.word_count, wordCount),
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
