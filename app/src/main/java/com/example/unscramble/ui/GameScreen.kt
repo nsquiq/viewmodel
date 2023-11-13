@@ -180,7 +180,13 @@ fun GameLayout(currentScrambledWord: String,
                     disabledContainerColor = colorScheme.surface,
                 ),
                 onValueChange = {onUserGuessChanged},
-                label = { Text(stringResource(R.string.enter_your_word)) },
+                 label = {
+                    if (isGuessWrong) {
+                        Text(stringResource(R.string.wrong_guess))
+                    } else {
+                        Text(stringResource(R.string.enter_your_word))
+                    }
+                },
                 isError = isGuessWrong,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
