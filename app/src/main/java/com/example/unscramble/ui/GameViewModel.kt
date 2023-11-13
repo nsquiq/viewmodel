@@ -7,9 +7,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 // Game UI stat
-
+fun updateUserGuess(guessedWord: String){
+    userGuess = guessedWord
+}
+var userGuess by mutableStateOf("")
+    private set
 class GameViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
