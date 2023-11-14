@@ -97,7 +97,7 @@ fun GameScreen( gameViewModel: GameViewModel = viewModel()
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {gameViewModel.checkUserGuess()  }
+                onClick = { gameViewModel.checkUserGuess()  }
             ) {
                 Text(
                     text = stringResource(R.string.submit),
@@ -186,7 +186,7 @@ fun GameLayout(currentScrambledWord: String,
                     unfocusedContainerColor = colorScheme.surface,
                     disabledContainerColor = colorScheme.surface,
                 ),
-                onValueChange = {onUserGuessChanged},
+                onValueChange = onUserGuessChanged,
                  label = {
                     if (isGuessWrong) {
                         Text(stringResource(R.string.wrong_guess))
